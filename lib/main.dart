@@ -1,12 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:imageexplorerg7/deportes_favoritos_page.dart';
 import 'package:imageexplorerg7/models/hero_model.dart';
 
 void main() {
   runApp(
     MaterialApp(
-      home: MainPage(),
+      home: DeportesPage(),
       debugShowCheckedModeBanner: false,
     ),
   );
