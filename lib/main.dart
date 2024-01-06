@@ -63,6 +63,7 @@ class _MainPageState extends State<MainPage> {
                 height: 300,
                 width: 500,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
                   image: DecorationImage(
                     image: NetworkImage(
                       listSuperHeroes[n]["urlImage"],
