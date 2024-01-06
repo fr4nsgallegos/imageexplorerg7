@@ -55,44 +55,65 @@ class _MainPageState extends State<MainPage> {
           title: Text("Play with me"),
           centerTitle: true,
         ),
-        body: Column(
-          children: [
-            Image.network(
-              listSuperHeroes[n]["urlImage"],
-              height: 300,
-            ),
-            Divider(),
-            Text(
-              "Nombre del hero: $heroName ",
-              style: TextStyle(
-                fontSize: 22,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+          child: Column(
+            children: [
+              Container(
+                height: 300,
+                width: 500,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      listSuperHeroes[n]["urlImage"],
+                    ),
+                    alignment: Alignment.topCenter,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
-            Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    heroName = listSuperHeroes[n]["name"];
-                    print(n);
-                    setState(() {});
-                  },
-                  child: Text("Mostrar nombre"),
+              // Container(
+              //   height: 300,
+              //   width: 300,
+              //   child: Image.network(
+              //     listSuperHeroes[n]["urlImage"],
+              //     height: 300,
+              //     fit: BoxFit.contain,
+              //   ),
+              // ),
+              Divider(),
+              Text(
+                "Nombre del hero: $heroName ",
+                style: TextStyle(
+                  fontSize: 22,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    n == listSuperHeroes.length - 1 ? n = 0 : n++;
-                    heroName = "";
-                    // n++;
-                    print(n);
-                    setState(() {});
-                  },
-                  child: Text("Next"),
-                ),
-              ],
-            )
-          ],
+              ),
+              Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      heroName = listSuperHeroes[n]["name"];
+                      print(n);
+                      setState(() {});
+                    },
+                    child: Text("Mostrar nombre"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      n == listSuperHeroes.length - 1 ? n = 0 : n++;
+                      heroName = "";
+                      // n++;
+                      print(n);
+                      setState(() {});
+                    },
+                    child: Text("Next"),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
