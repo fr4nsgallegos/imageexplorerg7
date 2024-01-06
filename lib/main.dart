@@ -9,7 +9,12 @@ void main() {
   );
 }
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
   List<Map<String, dynamic>> listSuperHeroes = [
     {
       "urlImage":
@@ -19,24 +24,28 @@ class MainPage extends StatelessWidget {
     {
       "urlImage":
           "https://cdn.pixabay.com/photo/2023/06/29/02/54/hulk-8095537_1280.png",
-      "name": "IronMan",
+      "name": "Hulk",
     },
     {
       "urlImage":
           "https://cdn.pixabay.com/photo/2023/06/03/07/01/wonder-woman-8037130_1280.png",
-      "name": "IronMan",
+      "name": "Mujer Maravilla",
     },
     {
       "urlImage":
           "https://cdn.pixabay.com/photo/2023/03/14/22/20/relationship-7853278_640.jpg",
-      "name": "IronMan",
+      "name": "Batman",
     },
     {
       "urlImage":
           "https://cdn.pixabay.com/photo/2020/09/11/00/06/spiderman-5561671_1280.jpg",
-      "name": "IronMan",
+      "name": "Superman",
     },
   ];
+
+  int n = 0;
+
+  String heroName = "";
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +57,13 @@ class MainPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Image.network(listSuperHeroes[0]["urlImage"]),
+            Image.network(
+              listSuperHeroes[n]["urlImage"],
+              height: 300,
+            ),
             Divider(),
             Text(
-              "Nombre del hero: ",
+              "Nombre del hero: $heroName ",
               style: TextStyle(
                 fontSize: 22,
               ),
@@ -61,11 +73,21 @@ class MainPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    heroName = listSuperHeroes[n]["name"];
+                    print(n);
+                    setState(() {});
+                  },
                   child: Text("Mostrar nombre"),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    n == listSuperHeroes.length - 1 ? n = 0 : n++;
+                    heroName = "";
+                    // n++;
+                    print(n);
+                    setState(() {});
+                  },
                   child: Text("Next"),
                 ),
               ],
