@@ -22,15 +22,12 @@ class _DeportesPageState extends State<DeportesPage> {
     return GestureDetector(
       onTap: () {
         if (isContainerTop == true) {
-          // print(title);
-          // listFavoriteDeportes.add(deporte);
-          listFavoriteDeportes = listDeportes
-              .where((element) => element["isFavorite"] == true)
-              .toList();
           deporte["isFavorite"] == true
               ? deporte["isFavorite"] = false
               : deporte["isFavorite"] = true;
-
+          listFavoriteDeportes = listDeportes
+              .where((element) => element["isFavorite"] == true)
+              .toList();
           setState(() {});
         } else {
           listFavoriteDeportes.remove(deporte);
