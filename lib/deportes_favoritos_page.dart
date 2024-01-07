@@ -16,19 +16,28 @@ class _DeportesPageState extends State<DeportesPage> {
     "Natación"
   ];
 
+  List<String> listFavoriteDeportes = [];
+
   Widget item(String title) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      margin: EdgeInsets.symmetric(horizontal: 4),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.orange, width: 2),
-      ),
-      height: 40,
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 20,
+    return GestureDetector(
+      onTap: () {
+        // print(title);
+        listFavoriteDeportes.add(title);
+        setState(() {});
+      },
+      child: Container(
+        padding: EdgeInsets.all(8),
+        margin: EdgeInsets.symmetric(horizontal: 4),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.orange, width: 2),
+        ),
+        height: 40,
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 20,
+          ),
         ),
       ),
     );
@@ -102,8 +111,8 @@ class _DeportesPageState extends State<DeportesPage> {
                   child: Wrap(
                     runSpacing: 8,
                     children: [
-                      for (int i = 0; i < listDeportes.length; i++)
-                        item(listDeportes[i])
+                      for (int i = 0; i < listFavoriteDeportes.length; i++)
+                        item(listFavoriteDeportes[i])
                     ],
                   ),
                 ),
