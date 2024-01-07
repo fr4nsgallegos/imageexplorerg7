@@ -8,6 +8,32 @@ class DeportesPage extends StatefulWidget {
 }
 
 class _DeportesPageState extends State<DeportesPage> {
+  List<String> listDeportes = [
+    "Gimnasio",
+    "Fútbol",
+    "Golf",
+    "Baloncesto",
+    "Natación"
+  ];
+
+  Widget item(String title) {
+    return Container(
+      padding: EdgeInsets.all(8),
+      margin: EdgeInsets.symmetric(horizontal: 4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.orange, width: 2),
+      ),
+      height: 40,
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 20,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,28 +57,16 @@ class _DeportesPageState extends State<DeportesPage> {
               SizedBox(
                 height: 16,
               ),
-              Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.orange, width: 2),
-                    ),
-                    padding: EdgeInsets.all(8),
-                    margin: EdgeInsets.symmetric(horizontal: 16),
-
-                    height: 40,
-                    // width: 100,
-                    child: Center(
-                      child: Text(
-                        "Gimnasio",
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Center(
+                child: Wrap(
+                  // spacing: 5,
+                  alignment: WrapAlignment.center,
+                  runSpacing: 8,
+                  children: [
+                    for (int i = 0; i < listDeportes.length; i++)
+                      item(listDeportes[i]),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 16,
@@ -78,34 +92,18 @@ class _DeportesPageState extends State<DeportesPage> {
               Container(
                 height: MediaQuery.of(context).size.height / 3,
                 width: double.infinity,
+                alignment: Alignment.topCenter,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 3),
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Wrap(
+                    runSpacing: 8,
                     children: [
-                      Container(
-                        alignment: Alignment.topLeft,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.orange, width: 2),
-                        ),
-                        padding: EdgeInsets.all(8),
-                        margin: EdgeInsets.symmetric(horizontal: 16),
-                        height: 40,
-                        // width: 100,
-                        child: Center(
-                          child: Text(
-                            "Gimnasio",
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                      ),
+                      for (int i = 0; i < listDeportes.length; i++)
+                        item(listDeportes[i])
                     ],
                   ),
                 ),
