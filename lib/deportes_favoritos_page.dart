@@ -8,22 +8,32 @@ class DeportesPage extends StatefulWidget {
 }
 
 class _DeportesPageState extends State<DeportesPage> {
-  List<String> listDeportes = [
-    "Gimnasio",
-    "Fútbol",
-    "Golf",
-    "Baloncesto",
-    "Natación"
+  List<Map<String, dynamic>> listDeportes = [
+    {"name": "Gimnasio", "isFavorite": false},
+    {"name": "Fútbol", "isFavorite": false},
+    {"name": "Golf", "isFavorite": false},
+    {"name": "Baloncesto", "isFavorite": false},
+    {"name": "Natación", "isFavorite": false}
   ];
 
-  List<String> listFavoriteDeportes = [];
+  List<Map<String, dynamic>> listFavoriteDeportes = [];
 
-  Widget item(String title) {
+  Widget item(Map<String, dynamic> deporte, bool isContainerTop) {
+    print("INICIOOOOOO");
     return GestureDetector(
       onTap: () {
-        // print(title);
-        listFavoriteDeportes.add(title);
-        setState(() {});
+        if (isContainerTop == true) {
+          // print(title);
+          listFavoriteDeportes.add(deporte);
+          deporte["isFavorite"]
+              ? deporte["isFavorite"] = false
+              : deporte["isFavorite"] = true;
+          print("CAMBIOOOOOOOOOO");
+          setState(() {});
+        } else {
+          listFavoriteDeportes.remove(deporte);
+          setState(() {});
+        }
       },
       child: Container(
         padding: EdgeInsets.all(8),
@@ -31,12 +41,14 @@ class _DeportesPageState extends State<DeportesPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.orange, width: 2),
+          color: deporte["isFavorite"] ? Colors.orange.shade300 : Colors.white,
         ),
         height: 40,
         child: Text(
-          title,
+          deporte["name"],
           style: TextStyle(
             fontSize: 20,
+            color: Colors.black,
           ),
         ),
       ),
@@ -73,7 +85,7 @@ class _DeportesPageState extends State<DeportesPage> {
                   runSpacing: 8,
                   children: [
                     for (int i = 0; i < listDeportes.length; i++)
-                      item(listDeportes[i]),
+                      item(listDeportes[i], true),
                   ],
                 ),
               ),
@@ -112,7 +124,7 @@ class _DeportesPageState extends State<DeportesPage> {
                     runSpacing: 8,
                     children: [
                       for (int i = 0; i < listFavoriteDeportes.length; i++)
-                        item(listFavoriteDeportes[i])
+                        item(listFavoriteDeportes[i], false)
                     ],
                   ),
                 ),
