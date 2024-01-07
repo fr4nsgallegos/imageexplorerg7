@@ -19,16 +19,18 @@ class _DeportesPageState extends State<DeportesPage> {
   List<Map<String, dynamic>> listFavoriteDeportes = [];
 
   Widget item(Map<String, dynamic> deporte, bool isContainerTop) {
-    print("INICIOOOOOO");
     return GestureDetector(
       onTap: () {
         if (isContainerTop == true) {
           // print(title);
-          listFavoriteDeportes.add(deporte);
-          deporte["isFavorite"]
+          // listFavoriteDeportes.add(deporte);
+          listFavoriteDeportes = listDeportes
+              .where((element) => element["isFavorite"] == true)
+              .toList();
+          deporte["isFavorite"] == true
               ? deporte["isFavorite"] = false
               : deporte["isFavorite"] = true;
-          print("CAMBIOOOOOOOOOO");
+
           setState(() {});
         } else {
           listFavoriteDeportes.remove(deporte);
@@ -41,7 +43,11 @@ class _DeportesPageState extends State<DeportesPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.orange, width: 2),
-          color: deporte["isFavorite"] ? Colors.orange.shade300 : Colors.white,
+          color: isContainerTop
+              ? deporte["isFavorite"] == true
+                  ? Colors.orange.shade300
+                  : Colors.white
+              : Colors.white,
         ),
         height: 40,
         child: Text(
